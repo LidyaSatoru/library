@@ -1,42 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
       <title>memorial books</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
-      <!-- bootstrap css -->
       <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
       <link rel="stylesheet" href="css/style.css">
-      <!-- Responsive-->
       <link rel="stylesheet" href="css/responsive.css">
-      <!-- fevicon -->
       <link rel="icon" href="images/fevicon.png" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <!-- Tweaks for older IEs-->
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      <style>
+         .products-grid {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping if there's enough space */
+    gap: 1rem;
+    overflow-x: auto; /* Enable horizontal scrolling if necessary */
+    padding: 1rem 0;
+}
+
+.products-grid::-webkit-scrollbar {
+    height: 8px; /* Height of the scrollbar */
+}
+
+.products-grid::-webkit-scrollbar-thumb {
+    background: #d0d0d0; /* Color of the scrollbar thumb */
+    border-radius: 4px;
+}
+
+.products-grid::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0; /* Hover color of the scrollbar thumb */
+}
+
+.products-grid::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Track color */
+}
+
+.product-row {
+    flex: 0 0 auto; /* Prevent shrinking and set a fixed size for each card */
+    width: 300px; /* Set the width of each card */
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    gap: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-row:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    color: #b12704;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.product-rating {
+    color: #ffa41c;
+    margin-bottom: 1rem;
+}
+
+.product-description {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.product-stock {
+    color: #008a00;
+    margin-bottom: 1rem;
+}
+      </style>
+   
    </head>
-   <!-- body -->
    <body class="main-layout Books-bg">
-      <!-- loader  -->
       <div class="loader_bg">
          <div class="loader"><img src="images/loading.gif" alt="#" /></div>
       </div>
-      <!-- end loader -->
-      <!-- header -->
       <header>
-         <!-- header inner -->
          <div class="header">
             <div class="container">
                <div class="row">
@@ -68,9 +137,7 @@
             </div>
          </div>
          </div>
-         <!-- end header inner -->
       </header>
-      <!-- end header -->
       <div class="about-bg">
          <div class="container">
             <div class="row">
@@ -82,46 +149,15 @@
             </div>
          </div>
       </div>
-      <!--Books -->
-      <div class="Books">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-10 offset-md-1">
-                  <div class="titlepage">
-                     <span>Mau belajar sesuatu yang baru? Aplikasi library kami siap membantu! Temukan e-book, artikel, dan jurnal dari berbagai bidang keilmuan. </span> 
-                  </div>
-               </div>
-            </div>
-            <div class="row box">
-               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-                  <div class="book-box">
-                     <figure><img src="images/book-1.jpg" alt="img"/></figure>
-                  </div>
-               </div>
-               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                  <div class="book-box">
-                     <figure><img src="images/book-2.jpg" alt="img"/></figure>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-                  <div class="book-box">
-                     <figure><img src="images/book-1.jpg" alt="img"/></figure>
-                  </div>
-               </div>
-            </div>
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12">
-                     <div class="read-more">
-                        <a href="#">Read More</a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end Books -->
-      <!-- footer -->
+      <div class="container">
+         <h2>Film serem</h2>
+         <div class="products-grid" id="horrorBooksGrid"></div>
+     </div>
+
+
+
+
+     
       <footer>
          <div class="footer">
             <div class="container">
@@ -148,16 +184,65 @@
             </div>
          </div>
       </footer>
-      <!-- end footer -->
-      <!-- Javascript files-->
+      <script>
+
+const horrorBook = [
+
+{
+    title: "Buku apaaaa",
+    price: "21.000.000",
+    rating: 4.3,
+    image: "/api/placeholder/250/200",
+    description: "",
+    stock: 50
+},
+{
+    title: "Buku serem",
+    price: 29.99,
+    rating: 4.3,
+    image: "/api/placeholder/250/200",
+    description: "",
+    stock: 50
+},
+{
+    title: "Buku serem lagi",
+    price: 29.99,
+    rating: 4.3,
+    image: "/api/placeholder/250/200",
+    description: "",
+    stock: 50
+},
+];
+
+
+
+const renderProducts = () => {
+
+const horrorBooksGrid = document.getElementById('horrorBooksGrid');
+horrorBooksGrid.innerHTML = horrorBook.map(product => `
+<div class="product-row">
+<img class="product-image" src="${product.image}" alt="${product.title}">
+<div class="product-info">
+    <div class="product-title">${product.title}</div>
+    <div class="product-price">$${product.price}</div>
+    <div class="product-rating">★★★★★ ${product.rating}</div>
+    <div class="product-description">${product.description}</div>
+    <div class="product-stock">In Stock: ${product.stock}</div>
+    <button class="add-to-cart">Add to Cart</button>
+</div>
+</div>
+`).join('');
+};
+
+renderProducts();
+
+      </script>
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
       <script src="js/jquery-3.0.0.min.js"></script>
       <script src="js/plugin.js"></script>
-      <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
    </body>
 </html>
-COPY TO CLIPBOARD    SELECT ALL
