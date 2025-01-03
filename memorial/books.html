@@ -151,6 +151,7 @@
       </div>
       <div class="container">
          <div class="products-grid" id="horrorBooksGrid"></div>
+         <div class="products-grid" id="novelBooksGrid"></div>
      </div>
       <footer>
          <div class="footer">
@@ -183,37 +184,64 @@
 const horrorBook = [
 
 {
-    title: "Novel",
-    price: "21.000",
+    title: "Laut Bercerita",
+    price: "25.000",
     rating: 4.3,
     image: "images/books.jpg",
     description: "",
-    stock: 50
+    stock: 50,
+    category: "Novel",
 },
 {
-    title: "Komik",
+    title: "Si Juki",
     price: "30.000",
     rating: 4.5,
     image: "images/books2.jpg",
     description: "",
-    stock: 50
+    stock: 50,
+    category: "Komik",
 },
 {
-    title: "Manga",
+    title: "Jujutsu Kaitsen",
     price: "45.000",
     rating: 5.0,
     image: "images/books3.png",
     description: "",
-    stock: 50
+    stock: 50,
+    category: "Manga",
 },
 ];
 
+const novelBooks = [
 
+{
+    title: "Kategori Novel",
+    price: "25.000",
+    rating: 4.3,
+    image: "images/books.jpg",
+    description: "",
+    stock: 50,~~
+},
+]
 
 const renderProducts = () => {
 
 const horrorBooksGrid = document.getElementById('horrorBooksGrid');
+const novelBooksGrid = document.getElementById('novelBooksGrid');
 horrorBooksGrid.innerHTML = horrorBook.map(product => `
+<div class="product-row">
+<img class="product-image" src="${product.image}" alt="${product.title}">
+<div class="product-info">
+    <div class="product-title">${product.title}</div>
+    <div class="product-price">$${product.price}</div>
+    <div class="product-rating">★★★★★ ${product.rating}</div>
+    <div class="product-description">${product.description}</div>
+    <div class="product-stock">In Stock: ${product.stock}</div>
+    <button class="add-to-cart">Add to Cart</button>
+</div>
+</div>
+`).join('');
+novelBooksGrid.innerHTML = novelBooks.map(product => `
 <div class="product-row">
 <img class="product-image" src="${product.image}" alt="${product.title}">
 <div class="product-info">
